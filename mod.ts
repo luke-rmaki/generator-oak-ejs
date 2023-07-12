@@ -9,7 +9,7 @@ export async function main() {
 
   create_dir(name);
 
-  console.log(import.meta.url);
+  console.log(new URL("./lib", import.meta.url).pathname);
   const lib_path = Deno.realPathSync(
     new URL("./lib", import.meta.url).pathname
   );
