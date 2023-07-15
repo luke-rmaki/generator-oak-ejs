@@ -7,16 +7,13 @@ export async function main() {
 
   const name = get_name();
 
-  // create_dir(name);
+  create_dir(name);
 
-  console.log(Deno.cwd());
-  console.log(new URL("./lib", import.meta.url).pathname);
-  const lib_path = Deno.realPathSync(
-    new URL("./lib", import.meta.url).pathname
-  );
-  console.log(lib_path);
+  const lib_url = new URL("./lib", import.meta.url).pathname;
 
-  // await generate_files(name, lib_path);
+  console.log(lib_url);
+
+  await generate_files(name, lib_url);
 
   console.log("🦕 Done!");
 }
