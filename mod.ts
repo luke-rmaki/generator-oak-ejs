@@ -1,4 +1,4 @@
-import { generate_files } from "./lib/copy_files.ts";
+import { generate_files } from "./lib/generate_files.ts";
 import { create_dir } from "./lib/create_dir.ts";
 import { get_name } from "./lib/get_name.ts";
 
@@ -6,22 +6,9 @@ export async function main() {
   console.log("🚀 Generating new Oak project");
 
   const name = get_name();
+  create_dir(name);
 
-  // create_dir(name);
-
-  const mod_url = new URL(import.meta.url);
-  // console.log(mod_url);
-  let lib_url;
-
-  if (mod_url.protocol === "file:") {
-    lib_url = new URL("./lib", mod_url).pathname;
-  } else {
-    lib_url = new URL("./lib", mod_url).href;
-  }
-
-  console.log(lib_url);
-
-  await generate_files(name, lib_url);
+  await generate_files(name);
 
   console.log("🦕 Done!");
 }
