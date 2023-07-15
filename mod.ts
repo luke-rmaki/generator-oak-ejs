@@ -7,11 +7,17 @@ export async function main() {
 
   const name = get_name();
 
-  create_dir(name);
+  // create_dir(name);
 
   const mod_url = new URL(import.meta.url);
+  // console.log(mod_url);
+  let lib_url;
 
-  const lib_url = new URL("./lib", mod_url).href;
+  if (mod_url.protocol === "file:") {
+    lib_url = new URL("./lib", mod_url).pathname;
+  } else {
+    lib_url = new URL("./lib", mod_url).href;
+  }
 
   console.log(lib_url);
 
