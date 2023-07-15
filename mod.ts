@@ -9,7 +9,9 @@ export async function main() {
 
   create_dir(name);
 
-  const lib_url = new URL("./lib", import.meta.url).pathname;
+  const mod_url = new URL(import.meta.url);
+
+  const lib_url = new URL("./lib", mod_url).href;
 
   console.log(lib_url);
 
